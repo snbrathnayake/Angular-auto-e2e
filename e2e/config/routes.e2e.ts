@@ -5,5 +5,5 @@ export const PathURL = {
   about: 'http://localhost:4200/#/about',
   loginURL: 'https://was.malachite.veracode.com/login/#!/login',
   baseURL: 'https://was.malachite.veracode.com/mvsa/#',
-  testURL: 'https://was.malachite.veracode.com/mvsa/#/test',
+  testURL: 'https://google.com/#/test',
 };
