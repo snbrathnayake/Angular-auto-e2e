@@ -8,4 +8,4 @@ export const PathURL = {
   loginURL: 'https://was.malachite.veracode.com/login/#!/login',
   baseURL: 'https://was.malachite.veracode.com/mvsa/#',
   youtube: 'https://www.youtube.com/',
-};  
+}
