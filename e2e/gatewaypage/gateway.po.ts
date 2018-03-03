@@ -5,7 +5,7 @@ export class GatewayPage {
 
     name = element(by.css('vc-form > vc-form-row:nth-child(1) > vc-form-item > input'));
     description = element(by.css('vc-form > vc-form-row:nth-child(2) > vc-form-item > textarea'));
-
+    //name:string;
     navigateTo() {
         const condition = browser.ExpectedConditions;
         browser.wait(condition.urlContains(PathURL.baseURL + '/add-gateway'));
