@@ -24,15 +24,19 @@ describe('Landing Page ', () => {
 
     browser.sleep(2000);
     expect(page.login()).toMatch(PathURL.baseURL);
+
   });
 
   it('should redirected #/landing-page', () => {
     expect(browser.driver.getCurrentUrl()).toMatch(PathURL.baseURL);
     browser.sleep(2000);
+   
   });
 
   it('should dispaly the navigation', () => {
-    expect(page.isPresentNavBar()).toBe(true);
+     expect(page.isPresentNavBar()).toBe(true);
+     browser.params.HAS_GATEWAY_VIEW = true;
+  
   });
 
   it('should dispaly the veracode logo', () => {

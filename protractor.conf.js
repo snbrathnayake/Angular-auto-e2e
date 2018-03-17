@@ -5,18 +5,23 @@ const { SpecReporter } = require('jasmine-spec-reporter');
 
 exports.config = {
   allScriptsTimeout: 11000,
+  params: {
+    glob: 'test',
+    HAS_GATEWAY_VIEW : false
+  },
   specs: [
     './e2e/landingpage/**/*.e2e-spec.ts',
-    './e2e/gatewaypage/**/*.e2e-spec.ts',
+    './e2e/validation/**/*.e2e-spec.ts',
   ],
+
   suites: {
-    default:'./e2e/*.e2e-spec.ts',
+    default: './e2e/*.e2e-spec.ts',
     home: './e2e/homepage/**/*.e2e-spec.ts',
     about: './e2e/aboutpage/**/*.e2e-spec.ts',
     land: './e2e/landingpage/**/*.e2e-spec.ts',
-    gateway:'./e2e/gatwaypage/**/*.e2e-spec.ts',
+    gateway: './e2e/gatwaypage/**/*.e2e-spec.ts',
   },
-  
+
   capabilities: {
     'browserName': 'chrome'
   },
