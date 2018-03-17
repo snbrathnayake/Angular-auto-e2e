@@ -7,13 +7,12 @@ export class ValidationPage {
     navigateTo() {
         return browser.get('/');
     }
-    showMessage(message) {
-        console.log(message);
+
+
+    gatewayStatus() {
+        return browser.params.HAS_GATEWAY_VIEW;
     }
 
-    getFlag(){
-        return this.flag;
-    }
     fill(){
 
         const input1 = element(by.css(' vc-form-item > input')).sendKeys('cc');
@@ -21,7 +20,11 @@ export class ValidationPage {
     }
 
     clickCancelButton(locator) {
-        element(by.css(locator)).click();
+        browser.sleep(1000);
+        return element(by.css(locator)).click().then( ()=>{
+            browser.sleep(1000);
+            return true;
+        });
     }
 
     clickGatewayWizard(locator) {
