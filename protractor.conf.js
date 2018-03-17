@@ -7,7 +7,7 @@ exports.config = {
   allScriptsTimeout: 11000,
   specs: [
     './e2e/landingpage/**/*.e2e-spec.ts',
-    './e2e/gatewaypage/**/*.e2e-spec.ts',
+    './e2e/validation/**/*.e2e-spec.ts',
   ],
   suites: {
     default:'./e2e/*.e2e-spec.ts',
