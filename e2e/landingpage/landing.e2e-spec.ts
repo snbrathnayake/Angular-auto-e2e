@@ -30,25 +30,24 @@ describe('Landing Page ', () => {
   it('should redirected #/landing-page', () => {
     expect(browser.driver.getCurrentUrl()).toMatch(PathURL.baseURL);
     browser.sleep(2000);
-   
+
   });
 
   it('should dispaly the navigation', () => {
      expect(page.isPresentNavBar()).toBe(true);
      browser.params.HAS_GATEWAY_VIEW = true;
-  
   });
 
   it('should dispaly the veracode logo', () => {
     expect(page.isPresentLogos()).toBe(true);
   });
 
-  it('should display the `configure mvsa` button', () => {
+  xit('should display the `configure mvsa` button', () => {
     expect(page.isPresentButton()).toBe(true);
   });
 
-  // must route action last test case 
-  it('should be clickble `configure mvsa` button', () => {
+  // must route action last test case
+  xit('should be clickble `configure mvsa` button', () => {
     page.buttonClicked();
   });
 

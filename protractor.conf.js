@@ -11,7 +11,8 @@ exports.config = {
   },
   specs: [
     './e2e/landingpage/**/*.e2e-spec.ts',
-    './e2e/validation/**/*.e2e-spec.ts',
+    // './e2e/validation/**/*.e2e-spec.ts',
+    './e2e/creation/**/*.e2e-spec.ts',
   ],
 
   suites: {
@@ -23,7 +24,10 @@ exports.config = {
   },
 
   capabilities: {
-    'browserName': 'chrome'
+    'browserName': 'chrome',
+    chromeOptions: {
+      args: ['--window-size=1200,800'] // THIS!
+    }
   },
 
   directConnect: true,

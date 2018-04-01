@@ -21,7 +21,7 @@ describe('Validation', () => {
         //     // console.log('1 - BeforeEach WAIT');
 
         // },10000);
-        browser.driver.sleep(5000);
+        browser.driver.sleep(3000);
 
     });
 
@@ -37,11 +37,11 @@ describe('Validation', () => {
         browser.driver.sleep(2000);
     });
 
-    it('status of gateway' ,() => {
+    it('status of gateway', () => {
         expect(page.gatewayStatus()).toBe(true);
     });
 
-    it('CANCLE BUTTON', () => {
+    xit('CANCLE BUTTON', () => {
 
         expect(browser.driver.getCurrentUrl()).toMatch(PathURL.baseURL + '/add-gateway').then(() => {
             page.fill();
@@ -66,9 +66,18 @@ describe('Validation', () => {
                         });
                     }
                     else {
-                        expect(browser.driver.getCurrentUrl()).toMatch(PathURL.baseURL + '/landing-page');
-                        page.clickGatewayWizard('.btn-holder');
-                        // TODO with landing page scenarios here.
+                        const condition = browser.ExpectedConditions;
+                        browser.wait(condition.urlContains(PathURL.baseURL + '/view-gateways')).then(() => {
+                            expect(browser.driver.getCurrentUrl()).toMatch(PathURL.baseURL + '/view-gateways');
+                            page.clickGatewayWizard('.btn-holder').then((e) => {
+                                expect(e).toBe(true);
+                                expect(browser.driver.getCurrentUrl()).toMatch(PathURL.baseURL + '/add-gateway').then(() => {
+                                    expect(page.nameFeild()).toBe('');
+                                    // add textarea value here too
+                                    expect(page.nameFeild()).not.toBe('cc');
+                                });
+                            });
+                        });
                     }
 
                 });
@@ -76,7 +85,7 @@ describe('Validation', () => {
         });
     });
 
-    it('open to empty page [GW]', ()=>{
+    it('open to empty page [GW]', () => {
 
     });
 });
