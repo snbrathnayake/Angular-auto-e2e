@@ -28,8 +28,6 @@ export class EndpointStatus {
         });
     }
 
-   
-
     getEndpointStatusInfor(page: string) {
         const index_elm = browser.params.INDEX_ELEMENT;
         let tableElement = null;
@@ -52,7 +50,7 @@ export class EndpointStatus {
             tableRow.all(by.tagName('td')).map((tableVal, index) => {
                 tableVal.getText().then((data) => {
                     if (data.length > 0) {
-                        if(page === EndpointStatus.OVERVIEW ){
+                        if (page === EndpointStatus.OVERVIEW) {
                             this.saveEndpointStatus(data, i)
                         } else {
                             this.compareEndpointStatus(data, i);
@@ -73,7 +71,7 @@ export class EndpointStatus {
         const offline = browser.params.OFFLINE;
         return ready !== null && pending !== null && offline !== null ? true : false;
     }
-    
+
     private compareEndpointStatus(cell: string, row: number) {
         switch (row) {
             case 0:
@@ -107,7 +105,6 @@ export class EndpointStatus {
         }
     }
 
-
     isEndpointActivityDisplayed(type: string, page: string) {
 
         if (type === EndpointStatus.SCAN && page === EndpointStatus.OVERVIEW) {
@@ -120,25 +117,6 @@ export class EndpointStatus {
             return element(by.css('app-gateway-detail > div > div.center > div > div:nth-child(1) > app-view-gateway > div > div > div > div > div.endpoint-status-activity > div > div.activity > div > div.details > table > tbody > tr:nth-child(1) > td:nth-child(2) > span')).isDisplayed();
         }
     }
-
-    // // TODO
-    // isEndpointActivityOverviewPage(type: string) {
-
-    //     if (type === EndpointStatus.SCAN) {
-    //         return element(by.css('app-gateway-list > div > div.center > app-view-gateway:nth-child(4) > div > div > div.body > div > div.endpoint-status-activity > div > div.activity > div > div.details > table > tbody > tr:nth-child(1) > td:nth-child(1) > span')).isDisplayed();
-    //     } else {
-    //         return element(by.css('app-gateway-list > div > div.center > app-view-gateway:nth-child(4) > div > div > div.body > div > div.endpoint-status-activity > div > div.activity > div > div.details > table > tbody > tr:nth-child(1) > td:nth-child(2) > span')).isDisplayed();
-    //     }
-    // }
-
-    // isEndpointActivityDetailPage(type: string) {
-
-    //     if (type === 'scan') {
-    //         return element(by.css('app-gateway-detail > div > div.center > div > div:nth-child(1) > app-view-gateway > div > div > div > div > div.endpoint-status-activity > div > div.activity > div > div.details > table > tbody > tr:nth-child(1) > td:nth-child(1) > span')).isDisplayed();
-    //     } else {
-    //         return element(by.css('app-gateway-detail > div > div.center > div > div:nth-child(1) > app-view-gateway > div > div > div > div > div.endpoint-status-activity > div > div.activity > div > div.details > table > tbody > tr:nth-child(1) > td:nth-child(2) > span')).isDisplayed();
-    //     }
-    // }
 
     getEndpointActivityInfor(type: string) {
         let idx = type === EndpointStatus.SCAN ? 2 : 3;
@@ -161,19 +139,6 @@ export class EndpointStatus {
                             this.hasActiveCount = true;
                             break;
                     }
-                    // console.log(index + ' =>: ' + data + ' reported :' + count);
-
-                    // if (idx === 2 && count !== null) {
-                    //     // console.log('Active counts SCAN : ' + count);
-                    //     browser.params.SCAN = count;
-                    //     this.hasActiveCount = true;
-                    // }
-                    // if (idx === 3 && count !== null) {
-                    //     //console.log('Active counts DSE : ' + count);
-                    //     browser.params.DSE = count;
-                    //     this.hasActiveCount = true;
-                    // }
-
                 }
             });
         });
@@ -224,15 +189,12 @@ export class EndpointStatus {
     }
 
     grideTable() {
-        const table = element.all(by.css('#borderLayout_eGridPanel > div.ag-bl-center.ag-bl-full-height-center > div > div.ag-body > div.ag-body-viewport-wrapper > div'));
-        const table2 = element.all(by.css('.ag-body-container'));
+        const table = element.all(by.css('.ag-body-container > div'));
 
-        table2.map((rec , index) =>{
-            console.log('INDEX : ' + index);
-            rec.getText().then( (text ) =>{
-                console.log(text.toString());
+        table.each((record, index) => {
+            record.getText().then((text) => {
+                console.log(index + ' ] : ' + text + '\n');
             });
-            
         });
     }
 }

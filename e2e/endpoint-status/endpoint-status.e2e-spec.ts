@@ -131,12 +131,8 @@ describe('Creation page ', () => {
     });
   });
 
-
-   it('gride view ---' ,() => {
-     page.grideTable();
-   });
-  // it('' ,() => {});
-  // it('' ,() => {});
-  // it('' ,() => {});
+  it('endpont status frame GRID', () => {
+    page.grideTable();
+  });
 
 });
