@@ -42,14 +42,14 @@ describe('Landing Page ', () => {
     expect(page.isPresentLogos()).toBe(true);
   });
 
-  xit('should display the `configure mvsa` button', () => {
-    expect(page.isPresentButton()).toBe(true);
-  });
+  // xit('should display the `configure mvsa` button', () => {
+  //   expect(page.isPresentButton()).toBe(true);
+  // });
 
-  // must route action last test case
-  xit('should be clickble `configure mvsa` button', () => {
-    page.buttonClicked();
-  });
+  // // must route action last test case
+  // xit('should be clickble `configure mvsa` button', () => {
+  //   page.buttonClicked();
+  // });
 
 
 

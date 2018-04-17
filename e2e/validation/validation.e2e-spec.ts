@@ -12,7 +12,7 @@ describe('Validation', () => {
 
     afterEach(() => {
         browser.ignoreSynchronization = false;
-    })
+    });
 
     it('Should redirect to base URL', () => {
 
@@ -45,11 +45,11 @@ describe('Validation', () => {
 
         expect(browser.driver.getCurrentUrl()).toMatch(PathURL.baseURL + '/add-gateway').then(() => {
             page.fill();
-            //page.buttonText('div.button').toBe('Cancle');
+            // page.buttonText('div.button').toBe('Cancle');
             page.clickCancelButton('app-footer > div > div:nth-child(2) > div > vc-button:nth-child(1)').then((e) => {
                 expect(e).toBe(true);
                 browser.driver.sleep(5000).then(() => {
-                    // this flag should set after  where hasGatway() invoked 
+                    // this flag should set after  where hasGatway() invoked
                     if (page.gatewayStatus()) {
                         // try to declare in for if/els both
                         const condition = browser.ExpectedConditions;

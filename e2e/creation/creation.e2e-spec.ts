@@ -1,8 +1,7 @@
 import { Creation } from './creation.po';
 import { browser, element, by } from 'protractor';
 import { PathURL } from '../config/routes.e2e';
-import { exec } from 'child_process';
-import { By } from 'selenium-webdriver';
+
 
 describe('Creation page ', () => {
   let page: Creation;
@@ -27,24 +26,55 @@ describe('Creation page ', () => {
     });
   });
 
+  it('First gateWay', () => {
+    const link = element(by.css('body > app-root > div > app-gateway-list > div > div.center > app-view-gateway:nth-child(1) > div > div > div.header > h2'));
+    link.click();
+    browser.sleep(1000);
+  });
+
+  it('new page is loading..', () => {
+    browser.wait(browser.ExpectedConditions.urlContains(PathURL.baseURL + '/gateway-detail')).then(() => {
+      expect(browser.driver.getCurrentUrl()).toMatch('https://was.malachite.veracode.com/mvsa/#/gateway-detail/1');
+    });
+
+  });
+
+  it('TEST', () => {
+    const scond = element(by.css('body > app-root > div > app-gateway-list > div > div.center > app-view-gateway:nth-child(664) > div > div > div.header > h2'));
+    try {
+      browser.driver.findElement(scond);
+    } catch (error) {
+      console.error('Not found : ' + error);
+      browser.debugger();
+    }
+
+  });
+
+  it('scroll up', () => {
+
+    const scrollDiv = element(by.css('.dropdown-menu'));
+    element.all(by.css('#dropdownBasic1')).each(function (item, index) {
+      item.click().then(function () {
+        const lastElement = element.all(by.css('app-gateway-detail-actions-renderer > vc-dropdown > div > div > button:nth-child(3)')).get(index);
+        browser.executeScript('arguments[0].scrollIntoView()', lastElement.getWebElement());
+        browser.sleep(500);
+      }).then(() => {
+        item.click();
+      });
+    });
+  });
+
   it('new gateway is displayed', () => {
     page.isDisplayedNewGateway().then(() => {
       expect(page.exists).toBe(true);
       browser.sleep(2000);
       page.showSelectedGateway(page.indexValue);
     });
-
-
   });
 
 
   it('/edit-gateway page show', () => {
     expect(browser.getCurrentUrl()).toContain('edit-gateway');
-  });
-
-
-  xit('test valid ip adrress', () => {
-
   });
 
   it('check Gateway Status ready icon', () => {
@@ -69,20 +99,19 @@ describe('Creation page ', () => {
 
   });
 
-
-  // it('should find apps by name', function () {
-  //   let exists = false;
-  //   element.all(by.css('.ag-cell ag-cell-not-inline-editing ag-cell-value')).each((element, index) => {
-  //     element.getText().then(function (text) {
-  //       console.log('existed name : ' + text);
-  //       if (text === 'endpoint1')
-  //         exists = true;
-  //       return exists;
-  //     }).then(function (exists) {
-  //       console.log('existed name : ' + exists);  // This appears after
-  //     });
-  //   });
-  // });
+  it('should find apps by name', function () {
+    let exists = false;
+    element.all(by.css('.ag-cell ag-cell-not-inline-editing ag-cell-value')).each((element, index) => {
+      element.getText().then(function (text) {
+        console.log('existed name : ' + text);
+        if (text === 'endpoint1')
+          exists = true;
+        return exists;
+      }).then(function (exists) {
+        console.log('existed name : ' + exists);  // This appears after
+      });
+    });
+  });
 
 
 
