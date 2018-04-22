@@ -208,7 +208,7 @@ export class EndpointStatus {
     }
 
     private isNext() {
-        console.log('Hello ----------------------');
+        console.log('next');
 
 
         const loc = 'body > app-root > div > app-gateway-detail > div > div.center > div > div:nth-child(2) > vc-grid > div > vc-grid-paging-controls:nth-child(3) > div > span > span > span';
