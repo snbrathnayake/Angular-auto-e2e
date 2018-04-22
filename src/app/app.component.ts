@@ -8,7 +8,6 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   title = 'Home';
-  
   constructor(private routes:Router){}
 
   navigateAbout(){

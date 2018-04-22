@@ -4,6 +4,10 @@ export class ValidationPage {
 
     flag: boolean = true;
 
+    elementobj: any = {
+        v1: 'Hello',
+        v2: 'World'
+    }
     navigateTo() {
         return browser.get('/');
     }
@@ -13,7 +17,7 @@ export class ValidationPage {
         return browser.params.HAS_GATEWAY_VIEW;
     }
 
-    fill(){
+    fill() {
 
         const input1 = element(by.css(' vc-form-item > input')).sendKeys('cc');
         const input2 = element(by.css(' vc-form-item > textarea')).sendKeys('dd');
@@ -21,7 +25,7 @@ export class ValidationPage {
 
     clickCancelButton(locator) {
         browser.sleep(1000);
-        return element(by.css(locator)).click().then( ()=>{
+        return element(by.css(locator)).click().then(() => {
             browser.sleep(1000);
             return true;
         });
@@ -29,17 +33,17 @@ export class ValidationPage {
 
     clickGatewayWizard(locator) {
         browser.sleep(1000);
-        return element(by.css(locator)).click().then( ()=>{
+        return element(by.css(locator)).click().then(() => {
             browser.sleep(1000);
             return true;
         });
-     
+
         // assign flag when hasgateway function()
     }
 
     nameFeild() {
         const name = element(by.css('vc-form-item > input'));
-        return name.getAttribute('value').then( (value) =>{
+        return name.getAttribute('value').then((value) => {
             browser.sleep(1000);
             return value;
         });
