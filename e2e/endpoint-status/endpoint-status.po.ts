@@ -20,7 +20,8 @@ export class EndpointStatus {
             list.getText().then((text) => {
                 if (text === _name) {
                     this.exists = true;
-                    browser.params.INDEX_ELEMENT = index + 1;
+                    // browser.params.INDEX_ELEMENT = index + 1;
+                    browser.params.INDEX_ELEMENT = 12;
                     console.log("found = " + browser.params.INDEX_ELEMENT);
                 }
 
@@ -188,12 +189,49 @@ export class EndpointStatus {
         });
     }
 
-    grideTable() {
-        const table = element.all(by.css('.ag-body-container > div'));
 
-        table.each((record, index) => {
+    getIndex() {
+        let count1 = 0;
+        const table = element.all(by.css('.ag-body-container > div'));
+        table.map((record) => {
             record.getText().then((text) => {
-                console.log(index + ' ] : ' + text + '\n');
+                ++count1;
+                if (count1 === 10) {
+                    console.log('Hello ' + count1);
+                    this.isNext();
+                } else {
+
+                }
+            });
+        });
+
+    }
+
+    private isNext() {
+        console.log('Hello ----------------------');
+
+
+        const loc = 'body > app-root > div > app-gateway-detail > div > div.center > div > div:nth-child(2) > vc-grid > div > vc-grid-paging-controls:nth-child(3) > div > span > span > span';
+        const val = element(by.css(loc)).isPresent();
+        val.then((present) => {
+            console.log('Element present : ' + present);
+        })
+    }
+
+
+    grideTableActivity() {
+        let count1 = 0;
+        let count2 = 0;
+        //  const table = element.all(by.css('.ag-body-container'));
+        const table = element.all(by.css('app-gateway-detail-activity-renderer > span'));
+        table.map((record, index) => {
+            record.getAttribute('class').then((text) => {
+                if (text.includes('scanner image-pointer')) {
+                    console.log('SCAN :' + ++count1);
+                } if (text.includes('glyphicon-user image-pointer')) {
+                    console.log('DSE : -------' + ++count2);
+
+                }
             });
         });
     }

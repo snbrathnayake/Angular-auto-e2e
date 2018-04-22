@@ -27,7 +27,7 @@ describe('Creation page ', () => {
   });
 
   it('search one gateway name [Overview page]', () => {
-    page.searchGateway('Second Gateway').then(() => {
+    page.searchGateway('GW-2500').then(() => {
       expect(page.exists).toBe(true);
     });
   });
@@ -85,7 +85,7 @@ describe('Creation page ', () => {
     page.navigateToSelectedGateway().then((e) => {
       browser.sleep(1000).then(() => {
         expect(browser.getCurrentUrl()).toContain('gateway-detail');
-        expect(page.verifySelectedGatewayName()).toMatch('Second Gateway');
+        expect(page.verifySelectedGatewayName()).toMatch('GW-2500');
       })
     });
   });
@@ -131,8 +131,10 @@ describe('Creation page ', () => {
     });
   });
 
+  
   it('endpont status frame GRID', () => {
-    page.grideTable();
+    page.getIndex();
+    // page.grideTableActivity();
   });
 
 });
