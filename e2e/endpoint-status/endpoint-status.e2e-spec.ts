@@ -133,8 +133,8 @@ describe('Creation page ', () => {
 
   
   it('endpont status frame GRID', () => {
-    page.getIndex();
-    // page.grideTableActivity();
+    // page.getIndex();
+    page.grideTableActivity();
   });
 
 });
