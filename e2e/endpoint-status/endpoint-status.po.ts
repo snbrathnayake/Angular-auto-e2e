@@ -189,7 +189,6 @@ export class EndpointStatus {
         });
     }
 
-
     getIndex() {
         let count1 = 0;
         const table = element.all(by.css('.ag-body-container > div'));
@@ -209,15 +208,15 @@ export class EndpointStatus {
 
     private isNext() {
         console.log('next');
-
-
         const loc = 'body > app-root > div > app-gateway-detail > div > div.center > div > div:nth-child(2) > vc-grid > div > vc-grid-paging-controls:nth-child(3) > div > span > span > span';
-        const val = element(by.css(loc)).isPresent();
-        val.then((present) => {
-            console.log('Element present : ' + present);
-        })
-    }
+        const data = element(by.css(loc)).isPresent();
 
+        return true;
+        // return val.then((present) => {
+        //     console.log('Element present : ' + present);
+        //     return present;
+        // })
+    }
 
     grideTableActivity() {
         let count1 = 0;
@@ -230,9 +229,58 @@ export class EndpointStatus {
                     console.log('SCAN :' + ++count1);
                 } if (text.includes('glyphicon-user image-pointer')) {
                     console.log('DSE : -------' + ++count2);
-
                 }
             });
+        });
+    }
+
+    onclicked(loc: string) {
+        return element(by.css(loc)).click().then(() => {
+            return true;
+        });
+    }
+
+    sendKeysValue(loc: string) {
+        const text = 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+        const box = element(by.css(loc));
+        box.clear();
+        console.log('Clear');
+        box.sendKeys(text);
+        // for (let j = 1; j <= 65; j++) {
+        //     console.log('count = :' + j);
+        //     if (j === 65) { box.sendKeys('B'); }
+        //     box.sendKeys('A');
+        // // }
+    }
+    sendKeysValueTAG(){
+        const text = 'Sometimes if that element is inside iframe then you have to switch to that iframe. Just check that is there any iframe or modal available?';
+        const box = element(by.tagName('input'));
+        box.clear();
+        console.log('Clear');
+        box.sendKeys(text);
+
+
+    }
+
+    sendKeysValueDirect() {
+        const text = 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAXOXOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAX';
+        const box = element(by.tagName('input'));
+       
+        box.clear();
+       // box.sendKeys(text);
+        element(by.tagName('input')).sendKeys(text);
+        
+    }
+
+    attribValue(loc: string) {
+        browser.driver.findElement(by.css('.message')).then( function(){
+
+        }, function() {
+            return false;
+        });
+        const att = element(by.css(loc));
+        att.getAttribute('maxlength').then((val) => {
+            console.log('maxValue = :' + val);
         });
     }
 }

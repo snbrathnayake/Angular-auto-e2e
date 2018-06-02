@@ -33,12 +33,12 @@ describe('Landing Page ', () => {
 
   });
 
-  it('should dispaly the navigation', () => {
+  xit('should dispaly the navigation', () => {
      expect(page.isPresentNavBar()).toBe(true);
      browser.params.HAS_GATEWAY_VIEW = true;
   });
 
-  it('should dispaly the veracode logo', () => {
+  xit('should dispaly the veracode logo', () => {
     expect(page.isPresentLogos()).toBe(true);
   });
 

@@ -19,9 +19,10 @@ exports.config = {
   },
   specs: [
     './e2e/landingpage/**/*.e2e-spec.ts',
-    // './e2e/validation/**/*.e2e-spec.ts',
-    // './e2e/creation/**/*.e2e-spec.ts',
+    // // './e2e/validation/**/*.e2e-spec.ts',
+    // // './e2e/creation/**/*.e2e-spec.ts',
     './e2e/endpoint-status/**/*.e2e-spec.ts',
+    //  './e2e/app.e2e-spec.ts',
   ],
 
   suites: {
@@ -50,6 +51,7 @@ exports.config = {
     print: function () { }
   },
   onPrepare() {
+    browser.manage().window().maximize();
     require('ts-node').register({
       project: 'e2e/tsconfig.e2e.json'
     });

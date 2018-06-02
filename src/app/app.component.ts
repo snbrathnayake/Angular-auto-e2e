@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -6,15 +6,22 @@ import { Router } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  title = 'Home';
-  constructor(private routes:Router){}
+export class AppComponent implements OnInit {
 
-  navigateAbout(){
-     this.routes.navigate(['/about']);
+  title = 'Home';
+  person = 'steve';
+
+  constructor(private routes: Router) {
+
   }
 
-  navigateHome(){
+  ngOnInit() { }
+
+  navigateAbout() {
+    this.routes.navigate(['/about']);
+  }
+
+  navigateHome() {
     this.routes.navigate(['/home']);
- }
+  }
 }
