@@ -14,36 +14,33 @@ describe('UIAuthorization', () => {
         browser.ignoreSynchronization = false;
     });
 
-    it('reday page [view-gateways]', () => {
-        // click mVSA Management  links
-        // expect in viewgateway page
-        // logout to login page to init the script 
-    });
-
-    it('verify [view-only] permissions are allowed: gateway/endpoint for the [Administrator_internal]', () => {
+    it('permissions are allowed: gateway/endpoint for the [Administrator_internal]', () => {
         page.navigateToLogin();
-        page.authenticateWith(UIAuthorization.MVSA_ADMIN, 'TESTtest11');
-        page.logout();
+        try {
+            page.authenticateWith(UIAuthorization.MVSA_ADMIN, 'TESTtest11');
+            console.log('Running..........');
+        } catch (error) {
+            console.log('Error................ : ' + error);
+        }
     });
 
-    //Reviewer_internal
-    it('verify [view-only] permissions are allowed: gateway/endpoint for the [Reviewer_internal]', () => { });
-
-    //Submitter_external
-    it('verify [view-only] permissions are allowed: gateway/endpoint for the [Submitter_external]', () => { });
-    it('verify [create] permissions are allowed: gateway/endpoint for the [Submitter_external]', () => {
-        // can't create
+    it('random gateways()', () => {
+        page.select_gateways();
     });
 
-    it('verify [view-only] permissions are allowed: gateway/endpoint for the [Creator_external]', () => { });
-    it('verify [create] permissions are allowed: gateway/endpoint for the [Creator_external]', () => { });
+    it('clicked pencile', () => {
+        const popover = element(by.css('div.popover-body > app-popup-edit-gateway > div.modal-body'));
+        const pencil = element(by.css('app-gateway-detail > div > div.header > div.header-left > span'));
+        const inputBox = element(by.css('input'));
 
-    //Security_lead_external
-    it('verify [view-only] permissions are allowed: gateway/endpoint for the [Security_lead_external]', () => { });
-    it('verify [create] permissions are allowed: gateway/endpoint for the [Security_lead_external]', () => { });
+        pencil.click().then(() => {
+            browser.wait(browser.ExpectedConditions.presenceOf(popover)).then(() => {
+                inputBox.clear().then(() => {
+                    inputBox.sendKeys('new gateway name');
+                    browser.sleep(2000);
+                });
+            });
+        });
 
-    //Administrator_external
-    it('verify [view-only] permissions are allowed: gateway/endpoint for the [Administrator_external]', () => { });
-    it('verify [create] permissions are allowed: gateway/endpoint for the [Administrator_external]', () => { });
-
+    });
 });

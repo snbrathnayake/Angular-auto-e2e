@@ -30,10 +30,27 @@ export class UIAuthorization {
         });
     }
 
+    select_gateways() {
+        let random = null;
+        browser.wait(browser.ExpectedConditions.urlContains(PathURL.baseURL + '/view-gateway')).then(() => {
+            element.all(by.css('.running')).count().then((count) => {
+                random = Math.floor(Math.random() * Math.floor(count));
+                console.log('RANDOM > ' + random);
+                element.all(by.css('.running')).get(random).click().then(() => {
+                    browser.wait(browser.ExpectedConditions.urlContains(PathURL.baseURL + '/gateway-detail')).then(() => {
+                        browser.wait(browser.ExpectedConditions.presenceOf(element(by.css('.ag-grid'))));
+                        console.log('has selected');
+                    });
+                }, err => {
+                    console.log('Error :' + err);
+                });
+            });
+        });
+    }
+
     authenticateWith(_usertype: string, password: string) {
         const mvsa_title = element(by.css('body > app-root > div > app-gateway-list > div > div.header > div:nth-child(1) > h1'));
         browser.wait(browser.ExpectedConditions.presenceOf(UIAuthorization.USERNAME)).then((e) => {
-            console.log('Element show ->' + e);
             // input user username/password for authenticate.
             this.enter_auth_credentials(_usertype, password);
             browser.sleep(1000).then(() => {
@@ -43,6 +60,8 @@ export class UIAuthorization {
                             browser.wait(browser.ExpectedConditions.presenceOf(mvsa_title));
                         });
                     });
+                }, err => {
+                    console.log('ERR >>>>>>>>>' + err);
                 });
             });
         });
@@ -86,7 +105,7 @@ export class UIAuthorization {
         const logoutIcon = element(by.css('body > app-root > div > vc-nav-bar > nav > vc-nav-bar-group-right > ul > vc-nav-item:nth-child(1) > li > div > span.icon.glyphicon.glyphicon-user'));
         const menuItem = element.all(by.css('body > app-root > div > vc-nav-bar > nav > vc-nav-bar-group-right > ul > vc-nav-item:nth-child(1) > li > vc-nav-item-group > ul > vc-nav-menu-item')).last();
 
-        if (logoutIcon.isPresent()) {
+        logoutIcon.isPresent().then((d) => {
             logoutIcon.click().then(() => {
                 menuItem.getText().then((text) => {
                     if (text === 'Logout') {
@@ -97,13 +116,18 @@ export class UIAuthorization {
                         });
                     }
                 });
+            }, err => {
+                console.log('icon : >>>>>' + err);
             });
-        }
+        }, err => {
+            console.log('logoutIcon present >>>>>>>>>' + err);
+        });
     }
 
-    permission_for_view() { }
-    permission_for_create() { }
-    permission_for_edit() { }
-    permission_for_select() { }
+
+
+
+
+
 
 }// class end
